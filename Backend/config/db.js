@@ -1,15 +1,14 @@
-const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 
-// Simulate hashed password
-const password = bcrypt.hashSync('123456', 10);
+connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('✅ MongoDB Connected');
+  } catch (error) {
+    console.error('❌ MongoDB connection failed:', error.message);
+    process.exit(1);
+  }
+};
 
-const users = [
-  {
-    id: '1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    password, // hashed password
-  },
-];
 
-module.exports = users;
+module.exports = connectDB;
