@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth')
-const dummyRoute = require('./routes/dummy')
 const allRoutes = require('./routes/index')
+const connectDB = require('./config/db');//importing the db connection file
+
 
 
 
@@ -10,7 +10,8 @@ dotenv.config();//adds .env to process and can be used throughout the project us
 
 const app = express();//create insatance of express 
 app.use(express.json());//parse the json that we passed and attach it in req.body
-
+connectDB();//connect to the database
+app.get('/', (req, res) => res.send('API is running...'));
 app.use('/api',allRoutes);//register a router for index.js and handle request starts with /api
 
 
