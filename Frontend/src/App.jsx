@@ -1,13 +1,18 @@
-import { useState } from 'react'
 
+import { BrowserRouter,useRoutes  } from 'react-router-dom';
+import AppRoutes from './routes';
 
+function AppRoutesWrapper() {
+  const routes = useRoutes(AppRoutes()); // Use the array with useRoutes
+  return routes;
+}
 function App() {
 
-
+const routes = AppRoutes();
   return (
-    <>
-      <h1>Welcome to the React App</h1>
-    </>
+    <BrowserRouter>
+        <AppRoutesWrapper />
+    </BrowserRouter>
   )
 }
 
