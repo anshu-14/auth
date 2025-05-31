@@ -2,10 +2,7 @@
 import { BrowserRouter,useRoutes  } from 'react-router-dom';
 import AppRoutes from './routes';
 
-function AppRoutesWrapper() {
-  const routes = useRoutes(AppRoutes()); // Use the array with useRoutes
-  return routes;
-}
+const AppRoutesWrapper = () => useRoutes(AppRoutes());
 function App() {
 
 const routes = AppRoutes();
