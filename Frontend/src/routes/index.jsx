@@ -3,38 +3,39 @@ import { Navigate } from 'react-router-dom';
 import Login from '../auth/Login';
 import Signup from '../auth/Signup';
 import Home from '../components/Home';
+import Profile from '../components/Profile';
+import Preferences from '../components/Preferences';
+import About from '../components/About';
+
+import MainLayout from '../layout/MainLayout';
 
 import { useAuth } from '../auth/AuthContext';
-
+    
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
-const AppRoutes = () => {
+export default function AppRoutes ()  {
   return [
     {
       path: '/',
-      element: <Navigate to="/login" />,
-    },
-    {
-      path: '/login',
       element: <Login />,
     },
     {
-      path: '/signup',
-      element: <Signup />,
+      path: '/',
+      element: <PrivateRoute><MainLayout /></PrivateRoute>,
+      children: [
+        
+        { path: 'profile', element: <Profile /> },
+        { path: 'home', element: <Home /> },
+         { path: 'settings/preferences', element: <Preferences /> },
+        { path: 'settings/about', element: <About /> },
+      ],
     },
-    {
-      path: '/home',
-      element: (
-        <PrivateRoute>
-          <Home />
-        </PrivateRoute>
-      ),
-    },
-    // add more routes here...
+    { path: '/login', element: <Login /> },
+    { path: '/signup', element: <Signup /> },
   ];
 };
 
-export default AppRoutes;
+
