@@ -3,10 +3,11 @@ import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 
 export default function Header({ toggleSidebar }) {
   const navigate = useNavigate();
-
+ const { logout } = useAuth();
   const start = (
     <Button
       icon="pi pi-bars"
@@ -35,7 +36,7 @@ export default function Header({ toggleSidebar }) {
         icon="pi pi-sign-out"
         className="p-button-text"
         onClick={() => {
-          localStorage.removeItem('token');
+          logout()
           navigate('/login');
         }}
       />
