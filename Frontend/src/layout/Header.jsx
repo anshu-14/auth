@@ -4,10 +4,12 @@ import { Menubar } from 'primereact/menubar';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Header({ toggleSidebar }) {
   const navigate = useNavigate();
  const { logout } = useAuth();
+const { toggleTheme, currentThemeType } = useTheme();
   const start = (
     <Button
       icon="pi pi-bars"
@@ -26,10 +28,16 @@ export default function Header({ toggleSidebar }) {
         onClick={() => navigate('/profile')}
       />
       <Button
+  label={currentThemeType === 'dark' ? 'Light Mode' : 'Dark Mode'}
+  icon={currentThemeType === 'dark' ? 'pi pi-sun' : 'pi pi-moon'}
+  className="p-button-text"
+  onClick={toggleTheme}
+/>
+      <Button
         label="Theme"
         icon="pi pi-cog"
         className="p-button-text"
-        onClick={() => console.log('Theme Settings')}
+        onClick={() => navigate('/theme')}
       />
       <Button
         label="Logout"
