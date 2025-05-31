@@ -6,6 +6,7 @@ import Home from '../components/Home';
 import Profile from '../components/Profile';
 import Preferences from '../components/Preferences';
 import About from '../components/About';
+import ThemeSetting from '../components/ThemeSetting';
 
 import MainLayout from '../layout/MainLayout';
 
@@ -29,6 +30,8 @@ export default function AppRoutes ()  {
         
         { path: 'profile', element: <Profile /> },
         { path: 'home', element: <Home /> },
+        { path: 'theme', element: <ThemeSetting /> },
+    
          { path: 'settings/preferences', element: <Preferences /> },
         { path: 'settings/about', element: <About /> },
       ],

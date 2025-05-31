@@ -1,12 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import 'primereact/resources/themes/lara-dark-indigo/theme.css'// theme
+
 import 'primereact/resources/primereact.min.css'                 // Core CSS
 import 'primeicons/primeicons.css'                               // Icons
 import 'primeflex/primeflex.css'  
 import { PrimeReactProvider } from 'primereact/api'
 import { AuthProvider } from './auth/AuthContext';
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,10 +15,12 @@ createRoot(document.getElementById('root')).render(
       ripple: true,
       inputStyle: 'filled' 
     }}>
+      <ThemeProvider>
       <AuthProvider>
 
     <App />
       </AuthProvider>
+      </ThemeProvider>
     </PrimeReactProvider>
   
   </StrictMode>,
