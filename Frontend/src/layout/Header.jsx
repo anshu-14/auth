@@ -27,12 +27,12 @@ const { toggleTheme, currentThemeType } = useTheme();
         className="p-button-text"
         onClick={() => navigate('/profile')}
       />
-      <Button
+      {/* <Button
   label={currentThemeType === 'dark' ? 'Light Mode' : 'Dark Mode'}
   icon={currentThemeType === 'dark' ? 'pi pi-sun' : 'pi pi-moon'}
   className="p-button-text"
   onClick={toggleTheme}
-/>
+/> */}
       <Button
         label="Theme"
         icon="pi pi-cog"
