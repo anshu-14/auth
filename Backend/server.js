@@ -10,9 +10,15 @@ dotenv.config();//adds .env to process and can be used throughout the project us
 
 const app = express();//create insatance of express 
 // Allow requests from your frontend
+const allowedOrigins = process.env.APP_URL.split(',').map(url => url.trim());
 app.use(cors({
-  origin: '*', // or use "*" for all
-  credentials: true // if you plan to use cookies or sessions
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl, mobile apps)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
 }));
 app.use(express.json());//parse the json that we passed and attach it in req.body
 connectDB();//connect to the database
